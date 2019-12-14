@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CreateAccontViewController: UIViewController {
 
@@ -47,6 +48,13 @@ class CreateAccontViewController: UIViewController {
             showAlert("兩次密碼不一致")
             return
         }
+        
         //TODO: 建帳號
+        Auth.auth().createUser(withEmail: accountString, password: password1String) {
+            (result, error) in
+            if error != nil {
+                print(error?.localizedDescription)
+            }
+        }
     }
 }

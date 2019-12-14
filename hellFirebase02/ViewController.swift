@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
-
+    var mAuth:Auth!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        mAuth = Auth.auth()
+        
+        mAuth.addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                print("add user success -> \(user.uid)")
+            } else {
+                print("add user fail!")
+            }
+        }
     }
 
 
